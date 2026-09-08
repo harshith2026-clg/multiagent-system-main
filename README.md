@@ -7,12 +7,6 @@ Manager, Skeptic) each review a candidate's resume + interview transcript on
 their own, then **debate** with each other, and a final **Judge** step weighs
 the evidence (not a simple average) to produce a hiring recommendation.
 
-Runs with **zero API key** in a deterministic **Mock Mode** (so it's fully
-demoable/gradeable out of the box), and automatically switches to real Claude
-API calls the moment you add an `ANTHROPIC_API_KEY`.
-
----
-
 ## 1. Approach & Logic
 
 The pipeline (`src/pipeline.js`) runs in five strict stages:
