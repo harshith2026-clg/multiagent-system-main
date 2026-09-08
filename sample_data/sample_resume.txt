@@ -1,0 +1,41 @@
+Aditya Rao
+Backend Software Engineer
+aditya.rao.dev@example.com | +91-98765-43210 | Bengaluru, India
+
+SUMMARY
+Backend engineer with 5 years of experience building scalable distributed
+systems. Passionate about clean architecture and mentoring junior engineers.
+
+EDUCATION
+B.Tech in Computer Science, Vellore Institute of Technology, 2019
+
+SKILLS
+Java, Python, Node.js, PostgreSQL, MongoDB, Redis, Docker, Kubernetes, AWS,
+Microservices, REST API design, System Design, Git, CI/CD
+
+EXPERIENCE
+
+Senior Backend Engineer — Finlytics Pay (2021 - Present)
+- Led the redesign of the payments microservices architecture, reducing
+  average transaction latency by 38%.
+- Owned the on-call rotation and incident response process for the payments
+  team, cutting P1 incident resolution time in half.
+- Managed a team of 4 engineers on the ledger reconciliation project.
+- Migrated legacy monolith modules to Kubernetes-based microservices,
+  improving deployment frequency from weekly to daily.
+
+Backend Engineer — Quickcart Retail (2019 - 2021)
+- Built and shipped the inventory synchronization service used across 3
+  regional warehouses, reducing stock discrepancies by 22%.
+- Designed REST APIs consumed by the mobile and web front-end teams.
+- Collaborated closely with the QA team to reduce production bugs by 15%
+  quarter over quarter.
+
+PROJECTS
+- Open-source contributor to a Redis caching library (500+ GitHub stars).
+- Built a personal project: a distributed rate limiter using Redis and
+  Node.js, later adopted internally at Finlytics Pay.
+
+NOTES
+Detail-oriented, hard worker, passionate team player who thrives under
+pressure.

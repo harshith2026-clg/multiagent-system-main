@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <title>Candidate Intelligence</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div><h1>Candidate Intelligence <span>Multi-Agent HR</span></h1><p class="subtitle">Evidence-first evaluation against the actual job description.</p></div>
+      <div class="top-actions"><span class="badge" id="apiBadge">3-document evaluation</span><button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle light and dark theme">Theme</button></div>
+    </div>
+  </header>
+  <main class="container">
+    <nav class="mode-switch" aria-label="Application view"><button class="mode-tab active" id="submissionTab" type="button" aria-selected="true">Candidate Submission</button><button class="mode-tab" id="recruiterTab" type="button" aria-selected="false" disabled>Recruiter Admin</button></nav>
+
+    <section id="submissionView">
+      <section class="hero-shell">
+        <div class="hero-copy"><span class="eyebrow">AI hiring intelligence</span><h2>Evaluate evidence.<br />Not impressions.</h2><p>Upload the candidate resume, interview transcript, and job description. Four isolated AI agents independently analyze the same source evidence, debate their conclusions, and produce a traceable hiring recommendation.</p><div class="hero-points"><span>4 independent agents</span><span>Evidence citations</span><span>JD benchmarked</span><span>Recruiter analytics</span></div></div>
+        <section class="submission-card" aria-labelledby="uploadHeading"><span class="card-kicker">Step 1</span><h3 id="uploadHeading">Candidate documents</h3><p class="hint">PDF files only · maximum 10 MB each · all three documents are required.</p>
+          <div class="upload-grid" id="uploads">
+            <div class="dropzone" data-input="resumeFile" tabindex="0" role="button" aria-label="Upload candidate resume PDF"><strong>Candidate Resume</strong><span>Click anywhere or drop a PDF</span><b class="upload-status">No file selected</b></div><input id="resumeFile" type="file" accept="application/pdf,.pdf" hidden />
+            <div class="dropzone" data-input="transcriptFile" tabindex="0" role="button" aria-label="Upload interview transcript PDF"><strong>Interview Transcript</strong><span>Click anywhere or drop a PDF</span><b class="upload-status">No file selected</b></div><input id="transcriptFile" type="file" accept="application/pdf,.pdf" hidden />
+            <div class="dropzone" data-input="jdFile" tabindex="0" role="button" aria-label="Upload job description PDF"><strong>Job Description (JD)</strong><span>Primary evaluation baseline · PDF only</span><b class="upload-status">No file selected</b></div><input id="jdFile" type="file" accept="application/pdf,.pdf" hidden />
+          </div>
+          <button class="primary-btn" id="evaluate" type="button">Evaluate Candidate <span>→</span></button>
+          <button class="secondary-btn retry-btn" id="retry" type="button" hidden>Retry Evaluation</button>
+          <div id="status" aria-live="polite" role="status" class="status-line">Ready for three PDF uploads.</div>
+        </section>
+      </section>
+
+      <section class="features-grid" aria-label="Evaluation features"><article class="feature-card"><div class="feature-index">01</div><h3>Isolated analysis</h3><p>Technical, HR, Skeptic, and Hiring Manager agents form independent conclusions before seeing each other.</p></article><article class="feature-card"><div class="feature-index">02</div><h3>Evidence debate</h3><p>A second turn compares disagreements, challenges unsupported claims, and records changed positions.</p></article><article class="feature-card"><div class="feature-index">03</div><h3>Recruiter-ready output</h3><p>Review evidence, consensus, risk signals, decision confidence, and an executive audio overview.</p></article></section>
+
+      <section id="progressPanel" class="card" hidden aria-labelledby="progressHeading"><div class="section-heading compact"><span class="eyebrow">Live pipeline</span><h2 id="progressHeading">Evaluation progress</h2></div><ol id="steps" class="stepper" aria-label="Pipeline progress"><li><span>1</span><div><strong>Extracting Profile</strong><small>Reading source evidence</small></div></li><li><span>2</span><div><strong>Running Isolated Agents</strong><small>Four parallel analyses</small></div></li><li><span>3</span><div><strong>Dynamic Debate</strong><small>Comparing agent positions</small></div></li><li><span>4</span><div><strong>Final Decision</strong><small>Evidence-weighted synthesis</small></div></li></ol><section id="agents" class="opinions-grid" aria-live="polite"></section></section>
+    </section>
+
+    <section id="recruiter" hidden aria-live="polite" aria-labelledby="recruiterHeading">
+      <div class="report-app">
+        <aside class="report-sidebar" aria-label="Recruiter report navigation">
+          <div class="report-mark">CI</div>
+          <a class="side-link active" href="#summary"><span>▦</span><small>Overview</small></a>
+          <a class="side-link" href="#analysis"><span>▤</span><small>Analysis</small></a>
+          <a class="side-link" href="#consensus"><span>♧</span><small>Consensus</small></a>
+          <a class="side-link" href="#evidence"><span>▧</span><small>Evidence</small></a>
+          <a class="side-link" href="#recommendations"><span>✧</span><small>Recommendations</small></a>
+          <button class="side-link new-evaluation" id="backToSubmission" type="button"><span>＋</span><small>New</small></button>
+        </aside>
+        <div class="report-main">
+          <section class="report-hero" id="summary" aria-label="Candidate evaluation summary">
+            <div class="report-identity">
+              <div class="candidate-avatar" aria-hidden="true">◯</div>
+              <div>
+                <span class="eyebrow">Candidate evaluation report</span>
+                <h2 id="recruiterHeading">Candidate Intelligence</h2>
+                <p id="success" class="hint">Evidence-first evaluation against the actual job description.</p>
+                <div class="candidate-meta"><span><b>Candidate</b><em>Candidate</em></span><span><b>Role</b><em>Target Role</em></span><span><b>Date</b><em>Evaluation</em></span><span><b>Type</b><em>3-Document Multi-Agent</em></span></div>
+              </div>
+            </div>
+            <div class="fit-score-card">
+              <span class="fit-label">Overall Fit Score</span>
+              <div class="fit-score"><strong id="fitScore">—</strong><span>/100</span></div>
+              <strong id="fitRecommendation" class="fit-recommendation">Evaluation ready</strong>
+              <div class="fit-meter"><span id="fitMeter"></span></div>
+            </div>
+            <div class="fit-gauge" id="fitGauge" aria-label="Overall fit percentage"><strong id="fitGaugeValue">—</strong><span>%</span></div>
+          </section>
+
+          <nav class="report-nav" aria-label="Report sections">
+            <a class="active" href="#summary">▮ Executive Summary</a>
+            <a href="#analysis">▤ Detailed Analysis</a>
+            <a href="#consensus">♧ Agent Consensus</a>
+            <a href="#evidence">▧ Evidence Trail</a>
+            <a href="#recommendations">✧ Recommendations</a>
+          </nav>
+
+          <div class="kpi-grid" id="kpis"></div>
+
+          <section class="report-columns" id="analysis">
+            <article class="card overview-card">
+              <div class="section-heading compact"><div><span class="eyebrow">Evaluation Overview</span><h2>Candidate profile</h2></div></div>
+              <div class="overview-visual">
+                <div class="radar-placeholder" id="radarChart" aria-label="Candidate evaluation radar chart"></div>
+                <div id="overviewMetrics" class="overview-metrics"></div>
+              </div>
+              <p class="overview-note">ⓘ Scores are derived from multi-agent analysis of the candidate's resume, JD fitment, and interview evaluation.</p>
+            </article>
+
+            <div class="evidence-stack" id="evidence">
+              <article class="card evidence-card"><div class="section-heading compact"><span class="eyebrow">▱</span><h2>Strengths</h2></div><div id="strengthList"></div></article>
+              <article class="card evidence-card"><div class="section-heading compact"><span class="eyebrow">△</span><h2>Concerns</h2></div><div id="concernList"></div></article>
+              <article class="card evidence-card"><div class="section-heading compact"><span class="eyebrow">⚖</span><h2>Unresolved Friction</h2></div><div id="frictionList"></div></article>
+            </div>
+          </section>
+
+          <section class="dashboard-grid compact-dashboard" id="consensus">
+            <article class="card chart-card"><div class="chart-heading"><div><span class="card-kicker">Agent consensus</span><h3>Consensus Distribution</h3></div></div><div id="consensusDonut" class="consensus-donut"></div></article>
+            <article class="card chart-card"><div class="chart-heading"><div><span class="card-kicker">Debate intelligence</span><h3>Stance Shift Overview</h3></div></div><div id="matrix" class="matrix-grid"></div></article>
+          </section>
+
+          <section class="card agent-score-card"><div class="chart-heading"><div><span class="card-kicker">Independent evaluation</span><h3>Agent Scores</h3></div></div><div id="agentBars" class="bar-chart" aria-label="Agent score comparison"></div></section>
+
+          <section class="card" aria-labelledby="debateHeading"><div class="section-heading compact"><span class="eyebrow">Second-turn discussion</span><h2 id="debateHeading">Evidence Trail</h2></div><div id="debate" class="debate-list"></div></section>
+          <section class="card" id="recommendations" aria-labelledby="decisionHeading"><div class="section-heading compact"><span class="eyebrow">Evidence-weighted synthesis</span><h2 id="decisionHeading">Final Recommendation</h2></div><div id="decision" class="final-decision"></div></section>
+          <section class="card audio-card" aria-labelledby="audioHeading"><div class="section-heading compact"><span class="eyebrow">Executive briefing</span><h2 id="audioHeading">Audio Overview</h2></div><p class="hint" id="audioScript">A concise recruiter summary will appear after evaluation.</p><div class="audio-controls"><button class="secondary-btn" id="audioPlay" type="button">Play</button><button class="secondary-btn" id="audioPause" type="button">Pause</button><button class="secondary-btn" id="audioStop" type="button">Stop</button></div></section>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>Candidate Intelligence · Evidence-based multi-agent evaluation</footer>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

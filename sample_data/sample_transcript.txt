@@ -1,0 +1,69 @@
+Interview Transcript — Aditya Rao — Backend Software Engineer role
+Interviewer: Priya (Engineering Manager)
+
+Priya: Thanks for joining, Aditya. Let's start with your recent work on the
+payments platform. Can you walk me through the microservices redesign you
+mentioned on your resume?
+
+Aditya: Sure. I worked on breaking apart a monolithic payments module into
+smaller services. The main challenge was the trade-off between consistency
+and latency, since payments need strong consistency guarantees but our
+users wanted faster checkout. I ended up designing an event-driven
+architecture using a message queue so writes could be acknowledged quickly
+while reconciliation happened asynchronously. That change reduced our
+average transaction latency by around 38%, which matched what I put on my
+resume.
+
+Priya: Nice, that's a solid number. Did you personally manage the engineers
+on that project?
+
+Aditya: That's a good question. Honestly, I didn't formally manage anyone -
+I don't have direct reports. I was the most senior engineer on the
+reconciliation project and I coordinated the work of three other engineers,
+reviewed their pull requests, and set the technical direction, but I wasn't
+their manager on paper. I think I phrased that as "managed a team of 4" on
+my resume, which in hindsight might overstate the formal management aspect
+- it was really technical leadership, not people management.
+
+Priya: That's a fair clarification, thanks for being upfront about it. How
+about the Kubernetes migration - what specifically did you do there?
+
+Aditya: I led the migration of two of our legacy monolith modules into
+Kubernetes-based microservices. I set up the deployment pipelines, wrote
+the Helm charts, and worked with the infra team on autoscaling policies. We
+went from deploying once a week to daily deploys. I did run into a tricky
+issue with connection pooling under Kubernetes' pod autoscaling - our
+database connections kept getting exhausted during scale-up events. I
+struggled with that for about two weeks before realizing we needed a
+connection pooler like PgBouncer in front of Postgres.
+
+Priya: Good catch. Overall, how many years would you say you've been doing
+serious backend engineering work?
+
+Aditya: I'd say around 3 years of real hands-on backend architecture work,
+though my total professional experience since college is about 5 years -
+the first couple of years I was doing a mix of QA support and junior
+front-end tasks before I moved fully into backend.
+
+Priya: Understood, that's helpful context. Tell me about a time you
+disagreed with a teammate.
+
+Aditya: During the ledger reconciliation project, one of the engineers
+wanted to use a distributed lock for consistency, but I was worried about
+the performance and single-point-of-failure risk. We went back and forth
+for a day, and eventually we compromised - we used optimistic concurrency
+control with a retry mechanism instead. I think that experience taught me
+to slow down and actually listen to the trade-offs the other person is
+worried about, even when I'm fairly confident in my own approach.
+
+Priya: That's a great example. Last question - why do you want to move on
+from your current role?
+
+Aditya: I've grown a lot at Finlytics Pay, but I'm looking for a role with
+more ownership over system design decisions from the ground up, rather than
+mostly working within an existing architecture. I also want to keep growing
+into a more senior technical leadership track, since I really enjoyed
+mentoring the junior engineers on my team even without a formal management
+title.
+
+Priya: Great, thanks Aditya. We'll be in touch soon.

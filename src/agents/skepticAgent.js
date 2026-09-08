@@ -1,0 +1,1 @@
+import {runAgent} from './agentBase.js'; export default p=>runAgent('skepticAgent','Cross-examine resume claims against transcript proof and JD expectations. Prioritize material gaps and embellishment risk.',p);

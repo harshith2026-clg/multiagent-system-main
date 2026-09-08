@@ -1,0 +1,1 @@
+import {describe,it,expect} from 'vitest'; import {buildProfile} from '../src/profile/profileBuilder.js'; describe('profile',()=>it('validates documents',()=>expect(buildProfile({resumeText:'React engineer with 5 years experience.',transcriptText:'I built React systems.',jdText:'Need React engineer.'}).skills).toContain('React')));

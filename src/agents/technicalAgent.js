@@ -1,0 +1,1 @@
+import {runAgent} from './agentBase.js'; export default p=>runAgent('technicalAgent','Benchmark technical depth against required/preferred stack in JD. Distinguish claimed vs demonstrated skills.',p);

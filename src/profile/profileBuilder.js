@@ -1,0 +1,4 @@
+import { z } from 'zod';
+export const ProfileSchema=z.object({resumeText:z.string().min(1),transcriptText:z.string().min(1),jdText:z.string().min(1),skills:z.array(z.string()),experience:z.array(z.string()),claims:z.array(z.string())});
+const clean=t=>String(t||'').replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g,' ').replace(/\s+/g,' ').trim().slice(0,120000);
+export function buildProfile({resumeText,transcriptText,jdText}){const r=clean(resumeText),t=clean(transcriptText),j=clean(jdText); if(!r||!t||!j) throw new Error('Resume, transcript, and Job Description must contain readable text.'); const skills=[...new Set((r.match(/\b(React|Node\.js|JavaScript|TypeScript|Python|AWS|Kubernetes|Docker|SQL)\b/gi)||[]))]; const experience=(r.match(/[^.]{0,80}(?:years|year)[^.]{0,80}/gi)||[]).slice(0,20); const claims=r.split(/(?<=[.!?])\s+/).filter(x=>x.length>25).slice(0,30); return ProfileSchema.parse({resumeText:r,transcriptText:t,jdText:j,skills,experience,claims});}
